@@ -11,7 +11,7 @@ typedef struct {
 } vector;
 
 /* Initialization */
-void void_init(vector* vector, size_t capacity, size_t element_bytes);
+void vector_init(vector* vector, size_t capacity, size_t element_bytes);
 
 /* Element Access and Modification */
 void vector_add(vector* vector, void* value);
@@ -28,12 +28,12 @@ void vector_clear(vector* vector);
 size_t vector_size(vector* vector);
 size_t vector_capacity(vector* vector);
 int vector_empty(vector* vector);
+int vector_contains(vector* vector, void* value, int (*compare)(void*, void*));
 
 /* Additional Operations */
 void vector_swap(vector* vector, size_t index1, size_t index2);
 void vector_remove_element(vector* vector, size_t index);
 void vector_insert_element(vector* vector, size_t index, void* value);
-int vector_contains(vector* vector, void* value, int (*compare)(void*, void*));
 void vector_sort(vector* vector, int (*compare)(void*, void*));
 
 #endif /* VECTOR_H */

@@ -33,7 +33,7 @@ typedef struct {
     size_t capacity;
     size_t element_bytes;
 }vector;
-void void_init(vector* vector, size_t capacity,size_t element_bytes)
+void vector_init(vector* vector, size_t capacity,size_t element_bytes)
 {
     vector->ptr=malloc(capacity*element_bytes);
     vector->capacity=capacity;
@@ -112,6 +112,24 @@ int vector_empty(vector* vector)
 {
     return vector->size==0;
 }
+int vector_contains(vector* vector, void* value, int (*compare)(void*, void*))
+{
+    void *value=malloc(vector->element_bytes);
+    if(value==NULL)
+    {
+        printf("Error: Memory Allocation failed");
+        exit(1);
+    }
+    for(int i=0;i<vector->size;i++)
+    {
+        vector_get(vector,value,i);
+        if(compare((char*)value,(char*)value)==0)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void vector_swap(vector* vector,size_t index1, size_t index2)
 {
@@ -172,24 +190,7 @@ void vector_insert_element(vector* vector, size_t index, void* value)
     memcpy(vector->ptr+(index*vector->element_bytes),value,vector->element_bytes);
     vector->size++;
 }
-int vector_contains(vector* vector, void* value, int (*compare)(void*, void*))
-{
-    void *value=malloc(vector->element_bytes);
-    if(value==NULL)
-    {
-        printf("Error: Memory Allocation failed");
-        exit(1);
-    }
-    for(int i=0;i<vector->size;i++)
-    {
-        vector_get(vector,value,i);
-        if(compare((char*)value,(char*)value)==0)
-        {
-            return 1;
-        }
-    }
-    return 0;
-}
+
 void vector_sort(vector* vector, int (*compare)(void*, void*))
 {
     qsort(vector->ptr,vector->size,vector->element_bytes,compare);
