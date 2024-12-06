@@ -1,8 +1,6 @@
-/*==============================================================
-# Dynamic Array (Vector) - Programmer's Workshop 2024
-==============================================================*/
 
-/*==============================================================
+# Dynamic Array (Vector) - Programmer's Workshop 2024
+
 ## Project Description
    This project provides a simple and efficient implementation of 
    a dynamic array (commonly known as a vector) in C. Developed 
@@ -17,9 +15,7 @@
    convenient and generally efficient, certain operations—like 
    those causing frequent resizing or shifting—may be less 
    efficient than using static arrays.
-==============================================================*/
 
-/*==============================================================
 ## Features
  - Initialization with Custom Capacity and Element Size
  - Dynamic Resizing
@@ -27,9 +23,7 @@
  - Insertion and Removal at arbitrary positions
  - Sorting with custom comparator
  - Memory Management: Clear and Free easily
-==============================================================*/
 
-/*==============================================================
 ## Functions and Time Complexity
 
 ### Initialization
@@ -77,9 +71,7 @@
    Checks if a given value exists, using a custom comparator.
  - vector_sort(vector* vector, int (*compare)(...))                    O(n log n)
    Sorts the vector using qsort and a custom comparator.
-==============================================================*/
 
-/*==============================================================
 ## Design and Implementation Details
    The vector internally manages a continuous block of memory 
    using malloc, realloc,free,memcpy and memmove. When capacity is exceeded, 
@@ -89,10 +81,8 @@
    By specifying element size at initialization, this vector 
    can hold any data type. Comparator functions enable custom 
    searching and sorting behaviors.
-==============================================================*/
 
-/*==============================================================
 ## License
    This project is released under the MIT License. Users are free 
    to use, modify, and distribute this code under these terms.
-==============================================================*/
+
