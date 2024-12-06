@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stddef.h>
-
+/*/
 #ifdef vectormcr
 
 #define init vector_init
@@ -19,14 +19,6 @@
 #endif vectormcr
 
 /*/
-void* memcpy(void* dest, const void* src, size_t n);
-
-    dest: A pointer to the destination memory block where data will be copied.
-    src: A pointer to the source memory block from which data will be copied.
-    n: The number of bytes to copy.
-
-
-*/
 typedef struct {
     void* ptr;
     size_t size;
@@ -98,12 +90,12 @@ void vector_clear(vector* vector)
     vector->size=0;
 }
 
-void vector_size(vector* vector)
+int vector_size(vector* vector)
 {
     return vector->size;
 }
 
-void vector_capacity(vector* vector)
+int vector_capacity(vector* vector)
 {
     return vector->capacity;
 }
@@ -112,22 +104,23 @@ int vector_empty(vector* vector)
 {
     return vector->size==0;
 }
-int vector_contains(vector* vector, void* value, int (*compare)(void*, void*))
+int vector_contains(vector* vector, void* value,int (*compare)(const void*, const void*))
 {
-    void *value=malloc(vector->element_bytes);
-    if(value==NULL)
+    void *temp_value=malloc(vector->element_bytes);
+    if(temp_value==NULL)
     {
         printf("Error: Memory Allocation failed");
         exit(1);
     }
     for(int i=0;i<vector->size;i++)
     {
-        vector_get(vector,value,i);
-        if(compare((char*)value,(char*)value)==0)
+        vector_get(vector,temp_value,i);
+        if(compare((char*)temp_value,(char*)value)==0)
         {
             return 1;
         }
     }
+    free(temp_value);
     return 0;
 }
 
@@ -191,7 +184,7 @@ void vector_insert_element(vector* vector, size_t index, void* value)
     vector->size++;
 }
 
-void vector_sort(vector* vector, int (*compare)(void*, void*))
+void vector_sort(vector* vector, int (*compar)(const void *, const void*))
 {
-    qsort(vector->ptr,vector->size,vector->element_bytes,compare);
+    qsort(vector->ptr,vector->size,vector->element_bytes,compar);
 }

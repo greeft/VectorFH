@@ -25,15 +25,15 @@ vector vector_free(vector* vector);
 void vector_clear(vector* vector);
 
 /* Queries */
-size_t vector_size(vector* vector);
-size_t vector_capacity(vector* vector);
+int vector_size(vector* vector);
+int vector_capacity(vector* vector);
 int vector_empty(vector* vector);
-int vector_contains(vector* vector, void* value, int (*compare)(void*, void*));
+int vector_contains(vector* vector, void* value,int (*compare)(const void*, const void*));
 
 /* Additional Operations */
 void vector_swap(vector* vector, size_t index1, size_t index2);
 void vector_remove_element(vector* vector, size_t index);
 void vector_insert_element(vector* vector, size_t index, void* value);
-void vector_sort(vector* vector, int (*compare)(void*, void*));
+void vector_sort(vector* vector, int (*compar)(const void *, const void*));
 
 #endif /* VECTOR_H */

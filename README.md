@@ -81,6 +81,8 @@
    By specifying element size at initialization, this vector 
    can hold any data type. Comparator functions enable custom 
    searching and sorting behaviors.
+   
+   Units tests have been generated with a help of CHATGPT o1
 
 ## License
    This project is released under the MIT License. Users are free 
